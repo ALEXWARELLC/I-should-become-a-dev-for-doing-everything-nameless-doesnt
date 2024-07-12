@@ -32,11 +32,11 @@ jobs:
       with:
         route: GET /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
 
     - name: Update PR Title
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
       run: |
         PR_TITLE=$(jq -r '.title' <<<"${{ steps.get_pr.outputs.data }}")
         PR_LABELS=$(jq -r '.labels | map(.name) | join(",")' <<<"${{ steps.get_pr.outputs.data }}")
