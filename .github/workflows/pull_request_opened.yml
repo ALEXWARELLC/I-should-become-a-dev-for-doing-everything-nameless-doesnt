@@ -43,7 +43,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        PR_TITLE=$(jq -r '.title' <<< "${{ steps.get_pr.outputs.data }}")
+        PR_TITLE=$(jq -r 'title' <<< "${{ steps.get_pr.outputs.data }}")
         PR_LABELS="${{ steps.extract_labels.outputs.labels }}"
 
         PREFIX=""
